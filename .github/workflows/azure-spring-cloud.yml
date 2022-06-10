@@ -11,7 +11,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: 'temurin'
-        java-version: 17
+        java-version: 11
         check-latest: false
         cache: 'maven'
     - name: Build with Maven
@@ -29,7 +29,7 @@ jobs:
       with:
         action: deploy
         azure-subscription: ${{ env.SUBSCRIPTION_ID }}
-        service-name: <AZ_SPRING_APPS_NAME>
+        service-name: azure-spring-apps-lab
         app-name: weather-service
         use-staging-deployment: false
         package: target/demo-0.0.1-SNAPSHOT.jar
