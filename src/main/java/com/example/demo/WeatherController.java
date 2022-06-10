@@ -3,7 +3,7 @@ package com.example.demo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping(path="/weather")
 public class WeatherController {
 
@@ -15,6 +15,10 @@ public class WeatherController {
 
     @GetMapping("/city")
     public @ResponseBody Weather getWeatherForCity(@RequestParam("name") String cityName) {
-        return weatherRepository.findById(cityName).get();
+        return weatherRepository.findById(cityName).map(weather -> {
+            weather.setDescription("It's always sunny on Azure Spring Apps, Jo updated again!!!!");
+            weather.setIcon("weather-sunny");
+            return weather;
+        }).get();
     }
 }
